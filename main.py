@@ -3,15 +3,17 @@ from tkinter import filedialog
 from tkinter import ttk
 from ConvertToPropertySet import convert_to_property_set
 from ConvertToClassification import convert_to_classification
-import ifcopenshell
+import os
 
 root = Tk()
 root.title("IfcClassificationConverter")
 root.geometry("365x220")
-root.iconbitmap('logo.ico')
+# root.iconbitmap('logo.ico')
+icon_path = os.path.join(os.path.dirname(__file__), 'logo.ico')
+root.iconbitmap(icon_path)
+
 
 filename = ""
-model = None
 
 def getFile():
     global filename
@@ -55,22 +57,6 @@ pSetLabel.grid(column=1, row=5, sticky='w')
 pSetName = Entry(root, width=22)
 pSetName.grid(column =2, row =5, columnspan=2 ,sticky='w')
 pSetName.insert(0, "bS_PSet_OkBKdV")
-
-# values = []
-# def loadFile():
-#     global model
-#     model = ifcopenshell.open(filename)
-#     print(model.schema)
-#     global values
-#     values = model.by_type("IfcPropertySet")
-#     print(values)
-
-# btnLoad = Button(root, text = "Load" , command=loadFile, width=4)
-# btnLoad.grid(column=3, row=5, sticky='e')
-
-# pSetName = ttk.Combobox(root, width=18, values=values)
-# pSetName.grid(column =2, row =5, columnspan=2 ,sticky='w')
-# pSetName.insert(0, "bS_PSet_OkBKdV")
 
 test = Message(root, text = " ", width=200)
 test.grid(column=1, row=7, columnspan=3, rowspan=2, sticky='w')

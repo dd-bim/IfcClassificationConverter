@@ -1,4 +1,8 @@
 .vscode
 __pycache__
 *.ifc
+*.rvt
 main_command.py
+dist
+build
+build.spec
