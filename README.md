@@ -1,0 +1,97 @@
+# Convert between IfcPropertySet and IfcClassification
+## Supported IFC versions
+- 2x3
+- 4
+- 4.3
+
+## Description
+Since not every software can export external classifications as IfcClassification and IfcClassificationReference, this tool shall help to improve IFC files.
+The catalog and classification attributes can be added as IfcPropertySingleValues to an IfcPropertySet, which is attached to entities. This tool reads the IfcPropertySets and converts them to IfcClassification and IfcClassificationReference, which are also attached to the entities. Then the IfcPropertySet and IfcPropertySingleValues are deleted. This conversion can also be done in the other direction, if some software could not read IfcClassification.
+
+The IfcPropertySet should look like this:
+![IfcPropertySet for Classification](img\PropertySet.png)
+
+The PropertySet name must start with the same string for each classification. This string must be set in the converter.
+A new file is created as result of the conversion.
+
+## Attributes
+The following attributes are allowed and supported:
+|attribute|description|required|IFC 2x3|IFC 4 and 4.3|comments|
+|:----|:----:|:----:|:----:|:----:|----:|
+|CatalogSource|Source (or publisher) for this classification.||x|x||
+|CatalogEdition|The edition or version of the classification system from which the classification notation is derived.||x|x||
+|CatalogEditionDate|The date on which the edition of the classification used became valid.||x|x||
+|CatalogName|The name or label by which the classification used is normally known.|x|x|x||
+|CatalogDescription|Additional description provided for the classification.|||x||
+|CatalogLocation|Resource identifier or locator, provided as URI, URN or URL, of the classification.|in IFC 4.3 used by Specification|||x|
+|ClassLocation|Location, where the external source (classification, document or library) can be accessed by electronic means. The electronic location is provided as an URI, and would normally be given as an URL location string.||x|x||
+|ClassIdentification|The Identification provides a unique identifier of the referenced item within the external source (classification, document or library). It may be provided as * a key, e.g. a classification notation, like NF2.3 * a handle * a uuid or guid. ...|in IFC 2x3 used by ItemReference||x|x||
+|ClassName|Name to further specify the reference. It can provide a human readable identifier. ...|x|x|x||
+|ClassReferencedSource|The classification system or source that is referenced.|has to be the exact name of the catalog for a correct assignment||x|x||
+|ClassDescription|Description of the classification reference for informational purposes.|||x||
+
+## Evolution of elements IfcClassification, IfcClassificationReference and IfcRelAssociatesClassification in different versions
+CHANGES to older version are marked in bold 
+
+### IFC 2x3:  
+IfcClassification(  
+    Source: IfcLabel,   
+    Edition: IfcLabel,   
+    EditionDate: OPTIONAL IfcCalendarDate,   
+    Name: IfcLabel  
+)   
+IfcClassificationReference(  
+    Location: OPTIONAL IfcLabel,   
+    ItemReference: OPTIONAL IfcIdentifier,  
+    Name: OPTIONAL IfcLabel,   
+    ReferencedSource: OPTIONAL IfcClassification  
+)  
+IfcRelAssociatesClassification(  
+    IfcRoot ...,  
+    RelatedObjects: Set of IfcRoot,  
+    RelatingClassification: IfcClassificationNotationSelect -> relevant: IfcClassificationReference  
+)   
+  
+### IFC 4:  
+IfcClassification(  
+    Source: **OPTIONAL** IfcLabel,   
+    Edition: **OPTIONAL** IfcLabel,   
+    EditionDate: OPTIONAL **IfcDate**,  
+    Name: IfcLabel,  
+    **Description: OPTIONAL IfcText,**  
+    **Location: OPTIONAL IfcURIReference,**  
+    **ReferenceTokens: OPTIONAL List of IfcIdentifier**  
+)  
+IfcClassificationReference(  
+    Location: OPTIONAL **IfcURIReference**,  
+    **Identification**: OPTIONAL IfcIdentifier,  
+    Name: OPTIONAL IfcLabel,  
+    ReferencedSource: OPTIONAL,  **IfcClassificationReferenceSelect**,  
+    **Description: OPTIONAL IfcText,**  
+    **Sort: OPTIONAL IfcIdentifier**  
+)
+IfcRelAssociatesClassification(  
+    IfcRoot ...,  
+    RelatedObjects: Set of **IfcDefinitionSelect**,  
+    RelatingClassification: **IfcClassificationSelect -> IfcClassificationReference, IfcClassification**  
+)  
+
+### IFC 4.3:  
+IfcClassification(  
+    Source: OPTIONAL IfcLabel,  
+    Edition: OPTIONAL IfcLabel,  
+    EditionDate: OPTIONAL IfcDate,  
+    Name: IfcLabel,  
+    Description: OPTIONAL IfcText,  
+    **Specification**: OPTIONAL IfcURIReference,  
+    ReferenceTokens: OPTIONAL List of IfcIdentifier  
+)  
+IfcClassificationReference(  
+    Location: OPTIONAL IfcURIReference,  
+    Identification: OPTIONAL IfcIdentifier,  
+    Name: OPTIONAL IfcLabel,  
+    ReferencedSource: OPTIONAL  IfcClassificationReferenceSelect,  
+    Description: OPTIONAL IfcText,  
+    Sort: OPTIONAL IfcIdentifier  
+)  
+
