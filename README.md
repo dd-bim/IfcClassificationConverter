@@ -9,6 +9,7 @@ Since not every software can export external classifications as IfcClassificatio
 The catalog and classification attributes can be added as IfcPropertySingleValues to an IfcPropertySet, which is attached to entities. This tool reads the IfcPropertySets and converts them to IfcClassification and IfcClassificationReference, which are also attached to the entities. Then the IfcPropertySet and IfcPropertySingleValues are deleted. This conversion can also be done in the other direction, if some software could not read IfcClassification.
 
 The IfcPropertySet should look like this:
+
 ![IfcPropertySet for Classification](img/PropertySet.png)
 
 The PropertySet name must start with the same string for each classification. This string must be set in the converter.
