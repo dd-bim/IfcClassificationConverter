@@ -24,11 +24,11 @@ The following attributes are allowed and supported:
 |CatalogEditionDate|The date on which the edition of the classification used became valid.||x|x||
 |CatalogName|The name or label by which the classification used is normally known.|x|x|x||
 |CatalogDescription|Additional description provided for the classification.|||x||
-|CatalogLocation|Resource identifier or locator, provided as URI, URN or URL, of the classification.|in IFC 4.3 used by Specification|||x|
+|CatalogLocation|Resource identifier or locator, provided as URI, URN or URL, of the classification.|||x|in IFC 4.3 used by Specification|
 |ClassLocation|Location, where the external source (classification, document or library) can be accessed by electronic means. The electronic location is provided as an URI, and would normally be given as an URL location string.||x|x||
-|ClassIdentification|The Identification provides a unique identifier of the referenced item within the external source (classification, document or library). It may be provided as * a key, e.g. a classification notation, like NF2.3 * a handle * a uuid or guid. ...|in IFC 2x3 used by ItemReference||x|x||
+|ClassIdentification|The Identification provides a unique identifier of the referenced item within the external source (classification, document or library). It may be provided as * a key, e.g. a classification notation, like NF2.3 * a handle * a uuid or guid. ...|x|x||in IFC 2x3 used by ItemReference|
 |ClassName|Name to further specify the reference. It can provide a human readable identifier. ...|x|x|x||
-|ClassReferencedSource|The classification system or source that is referenced.|has to be the exact name of the catalog for a correct assignment||x|x||
+|ClassReferencedSource|The classification system or source that is referenced.|x|x||has to be the exact name of the catalog for a correct assignment|
 |ClassDescription|Description of the classification reference for informational purposes.|||x||
 
 ## Evolution of elements IfcClassification, IfcClassificationReference and IfcRelAssociatesClassification in different versions
