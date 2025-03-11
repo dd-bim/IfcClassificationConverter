@@ -1,8 +1,7 @@
 import ifcopenshell
 import ifcopenshell.util.date
 
-def convert_to_classification(file, pSetName):
-    model = ifcopenshell.open(file)
+def convert_to_classification(file, model, pSetName):
 
     version = model.schema
     owner_history = model.by_type("IfcOwnerHistory")[0]
@@ -14,7 +13,8 @@ def convert_to_classification(file, pSetName):
     property_sets_classification = []
     removable = set()
     for property_set in property_sets:
-        if property_set.Name.startswith(pSetName):
+        # if property_set.Name.startswith(pSetName):
+        if property_set.Name in pSetName:
             property_sets_classification.append(property_set)
 
 
