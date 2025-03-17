@@ -12,7 +12,11 @@ The IfcPropertySet should look like this:
 
 ![IfcPropertySet for Classification](img/PropertySet.png)
 
-The PropertySet name must start with the same string for each classification. This string must be set in the converter.
+The IfcClassification with IfcClassificationReference then looks like this:
+
+![IfcClassification from IfcPropertySet](img/IfcClassification.png)
+
+The PropertySet names can be chosen from a list of all IfcPropertySets in the file or entered as a string. From the IfcClassificationReference, a IfcPropertySet name can be generated from the buildingSMART URI of the element, if set. The schema is 'bSD_catalog_code_catalog_version'. Otherwise it is generated as 'bSD_class_name' or the user enters a name. 
 A new file is created as result of the conversion.
 
 ## Attributes
@@ -25,11 +29,13 @@ The following attributes are allowed and supported:
 |CatalogName|The name or label by which the classification used is normally known.|x|x|x||
 |CatalogDescription|Additional description provided for the classification.|||x||
 |CatalogLocation|Resource identifier or locator, provided as URI, URN or URL, of the classification.|||x|in IFC 4.3 used by Specification|
+|CatalogReferenceTokens|The delimiter tokens that are used to mark the boundaries of individual facets (substrings) in a classification reference.|||x||
 |ClassLocation|Location, where the external source (classification, document or library) can be accessed by electronic means. The electronic location is provided as an URI, and would normally be given as an URL location string.||x|x||
 |ClassIdentification|The Identification provides a unique identifier of the referenced item within the external source (classification, document or library). It may be provided as * a key, e.g. a classification notation, like NF2.3 * a handle * a uuid or guid. ...||x|x|in IFC 2x3 used by ItemReference|
 |ClassName|Name to further specify the reference. It can provide a human readable identifier. ...|x|x|x||
 |ClassReferencedSource|The classification system or source that is referenced.||x|x|has to be the exact name of the catalog for a correct assignment|
 |ClassDescription|Description of the classification reference for informational purposes.|||x||
+|ClassSort|Optional identifier to sort the set of classification references within the referenced source (either a classification facet of higher level, or the classification system itself).|||x||
 
 ## Evolution of elements IfcClassification, IfcClassificationReference and IfcRelAssociatesClassification in different versions
 CHANGES to older version are marked in bold 
