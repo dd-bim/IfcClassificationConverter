@@ -16,7 +16,7 @@ The IfcClassification with IfcClassificationReference then looks like this:
 
 ![IfcClassification from IfcPropertySet](img/IfcClassification.png)
 
-The PropertySet names can be chosen from a list of all IfcPropertySets in the file or entered as a string. From the IfcClassificationReference, a IfcPropertySet name can be generated from the buildingSMART URI of the element, if set. The schema is 'bSD_catalog_code_catalog_version'. Otherwise it is generated as 'bSD_class_name' or the user enters a name. 
+The PropertySet names can be chosen from a list of all IfcPropertySets in the file or entered as a string. From the IfcClassificationReference, a IfcPropertySet name can be generated from the buildingSMART URI of the element, if set. The schema is 'bSD_catalogCode_catalogVersion'. Otherwise it is generated as 'bSD_className' or the user enters a name. 
 A new file is created as result of the conversion.
 
 ## Attributes
