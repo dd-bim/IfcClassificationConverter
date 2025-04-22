@@ -8,9 +8,9 @@ jobs:
     runs-on: windows-2019
     steps:
       - name: Checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v3
       - name: Install Python
-        uses: actions/setup-python@v1
+        uses: actions/setup-python@v4
         with:
           python-version: '3.12.9'
           architecture: 'x64'
@@ -23,7 +23,7 @@ jobs:
       - name: Compress Folder
         run: |
           powershell Compress-Archive -Path dist/IfcClassificationConverter/* -DestinationPath dist/IfcClassificationConverter.zip
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v3
         with:
           name: IfcClassificationConverter
           path: dist/IfcClassificationConverter.zip
