@@ -49,13 +49,15 @@ def convert_to_property_set(file, model, pSetNameType):
                             removable.add(classification.ClassificationForObjects[0])
                 else:
                     value = attr.get(key)
-                    if key == 'Identification' and pSetName == 'GenerateNames' and value is not None:
+                    if key == 'Location' and pSetName == 'GenerateNames' and value is not None:
                         val = value.split('/')
                         l = len(val)
                         try:
                             pSetName = 'bSD_' + val[l-4] + '_' + val[l-3]
                         except:
                             pSetName = 'bSD_' + attr.get("Name")
+                    elif key == 'Location' and pSetName == 'GenerateNames' and value is None:
+                        pSetName = 'bSD_' + attr.get("Name")
                     if value is not None:
                         properties['Class'+key] = value
             removable.add(reference)

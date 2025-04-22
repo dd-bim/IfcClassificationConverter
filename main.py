@@ -107,7 +107,7 @@ pSetName.update_idletasks()
 w = pSetName.winfo_width()
 rb_generate = Radiobutton(
     tab2,
-    text="Generate Pset names by URI \n\n(Important! bSDD URI in IfcClassificationReference Identifier must be set)",
+    text="Generate Pset names by URI \n\n(Important! bSDD URI in IfcClassificationReference Location must be set)",
     wraplength=165,
     value="generate",
     variable=input_method_tab2,
