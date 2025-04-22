@@ -24,7 +24,7 @@ jobs:
         run: |
           powershell Compress-Archive -Path dist/IfcClassificationConverter/* -DestinationPath dist/IfcClassificationConverter.zip
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: IfcClassificationConverter
           path: dist/IfcClassificationConverter.zip
