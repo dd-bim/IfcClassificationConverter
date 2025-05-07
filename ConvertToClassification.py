@@ -75,7 +75,8 @@ def convert_to_classification(file, model, pSetName):
                     catalogAttr.get('EditionDate', None), 
                     catalogAttr.get('Name'), 
                     catalogAttr.get('Description', None), 
-                    catalogAttr.get('Specification', None), 
+                    catalogAttr.get('Specification', None), # IFC 4.3
+                    catalogAttr.get('Location', None), # IFC 4
                     catalogAttr.get('ReferenceToken', None)
                 )
                 reference = model.createIfcClassificationReference(
