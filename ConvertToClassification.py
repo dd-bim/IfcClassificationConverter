@@ -71,9 +71,9 @@ def convert_to_classification(file, model, pSetName):
             else:
                 spec = None
                 if 'Specification' in catalogAttr:
-                    spec = catalogAttr['Specification']
+                    spec = catalogAttr['Specification'] # IFC4.3
                 elif 'Location' in catalogAttr:
-                    spec = catalogAttr['Location']
+                    spec = catalogAttr['Location'] # IFC4
                 classification = model.createIfcClassification(
                     catalogAttr.get('Source', None), 
                     catalogAttr.get('Edition', None), 
