@@ -69,14 +69,18 @@ def convert_to_classification(file, model, pSetName):
                     classification  
             )    
             else:
+                spec = None
+                if 'Specification' in catalogAttr:
+                    spec = catalogAttr['Specification']
+                elif 'Location' in catalogAttr:
+                    spec = catalogAttr['Location']
                 classification = model.createIfcClassification(
                     catalogAttr.get('Source', None), 
                     catalogAttr.get('Edition', None), 
                     catalogAttr.get('EditionDate', None), 
                     catalogAttr.get('Name'), 
                     catalogAttr.get('Description', None), 
-                    catalogAttr.get('Specification', None), # IFC 4.3
-                    catalogAttr.get('Location', None), # IFC 4
+                    spec,
                     catalogAttr.get('ReferenceToken', None)
                 )
                 reference = model.createIfcClassificationReference(
