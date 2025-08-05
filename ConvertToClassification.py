@@ -1,7 +1,7 @@
 import ifcopenshell
 import ifcopenshell.util.date
 
-def convert_to_classification(file, model, pSetName):
+def convert_to_classification(file, model, pSetName, delete_psets):
 
     try:
         version = model.schema
@@ -41,11 +41,11 @@ def convert_to_classification(file, model, pSetName):
             properties = property_set.HasProperties
             for prop in properties:
                 if prop.is_a("IfcPropertySingleValue"):
-                    if prop.Name.startswith("Catalog"):
-                        catName = prop.Name.replace("Catalog", "")
+                    if prop.Name=="ClassificationReferenceToken" or (prop.Name.startswith("Classification") and not prop.Name.startswith("ClassificationReference")):
+                        catName = prop.Name.replace("Classification", "")
                         catalogAttr[catName] = prop.NominalValue.wrappedValue
-                    elif prop.Name.startswith("Class"):
-                        className = prop.Name.replace("Class", "")
+                    elif prop.Name.startswith("ClassificationReference"):
+                        className = prop.Name.replace("ClassificationReference", "")
                         classAttr[className] = prop.NominalValue.wrappedValue
                     else:
                         print("Unknown property: ", prop.Name)
@@ -113,8 +113,9 @@ def convert_to_classification(file, model, pSetName):
             )
             
         # remove all IfcPropertySets
-        for obj in removable:
-            model.remove(obj)
+        if delete_psets:
+            for obj in removable:
+                model.remove(obj)
             
         model.write(file.replace('.ifc','') + "_with_classification.ifc")
         return "Conversion successful!"

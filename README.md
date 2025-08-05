@@ -23,19 +23,19 @@ A new file is created as result of the conversion.
 The following attributes are allowed and supported:
 |attribute|description|required|IFC 2x3|IFC 4 and 4.3|comments|
 |:----|:----:|:----:|:----:|:----:|----:|
-|CatalogSource|Source (or publisher) for this classification.||x|x||
-|CatalogEdition|The edition or version of the classification system from which the classification notation is derived.||x|x||
-|CatalogEditionDate|The date on which the edition of the classification used became valid.||x|x||
-|CatalogName|The name or label by which the classification used is normally known.|x|x|x||
-|CatalogDescription|Additional description provided for the classification.|||x||
-|CatalogLocation|Resource identifier or locator, provided as URI, URN or URL, of the classification.|||x|in IFC 4.3 used by Specification|
-|CatalogReferenceTokens|The delimiter tokens that are used to mark the boundaries of individual facets (substrings) in a classification reference.|||x||
-|ClassLocation|Location, where the external source (classification, document or library) can be accessed by electronic means. The electronic location is provided as an URI, and would normally be given as an URL location string.||x|x||
-|ClassIdentification|The Identification provides a unique identifier of the referenced item within the external source (classification, document or library). It may be provided as * a key, e.g. a classification notation, like NF2.3 * a handle * a uuid or guid. ...||x|x|in IFC 2x3 used by ItemReference|
-|ClassName|Name to further specify the reference. It can provide a human readable identifier. ...|x|x|x||
-|ClassReferencedSource|The classification system or source that is referenced.||x|x|has to be the exact name of the catalog for a correct assignment|
-|ClassDescription|Description of the classification reference for informational purposes.|||x||
-|ClassSort|Optional identifier to sort the set of classification references within the referenced source (either a classification facet of higher level, or the classification system itself).|||x||
+|ClassificationSource|Source (or publisher) for this classification.||x|x||
+|ClassificationEdition|The edition or version of the classification system from which the classification notation is derived.||x|x||
+|ClassificationEditionDate|The date on which the edition of the classification used became valid.||x|x||
+|ClassificationName|The name or label by which the classification used is normally known.|x|x|x||
+|ClassificationDescription|Additional description provided for the classification.|||x||
+|ClassificationLocation|Resource identifier or locator, provided as URI, URN or URL, of the classification.|||x|in IFC 4.3 used by Specification|
+|ClassificationReferenceTokens|The delimiter tokens that are used to mark the boundaries of individual facets (substrings) in a classification reference.|||x||
+|ClassificationReferenceLocation|Location, where the external source (classification, document or library) can be accessed by electronic means. The electronic location is provided as an URI, and would normally be given as an URL location string.||x|x||
+|ClassificationReferenceIdentification|The Identification provides a unique identifier of the referenced item within the external source (classification, document or library). It may be provided as * a key, e.g. a classification notation, like NF2.3 * a handle * a uuid or guid. ...||x|x|in IFC 2x3 used by ItemReference|
+|ClassificationReferenceName|Name to further specify the reference. It can provide a human readable identifier. ...|x|x|x||
+|ClassificationReferenceReferencedSource|The classification system or source that is referenced.||x|x|has to be the exact name of the catalog for a correct assignment|
+|ClassificationReferenceDescription|Description of the classification reference for informational purposes.|||x||
+|ClassificationReferenceSort|Optional identifier to sort the set of classification references within the referenced source (either a classification facet of higher level, or the classification system itself).|||x||
 
 ## Evolution of elements IfcClassification, IfcClassificationReference and IfcRelAssociatesClassification in different versions
 CHANGES to older version are marked in bold 

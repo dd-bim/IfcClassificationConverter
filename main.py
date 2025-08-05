@@ -8,7 +8,7 @@ import os
 
 root = Tk()
 root.title("IfcClassificationConverter")
-root.geometry("395x285")
+root.geometry("395x305")
 icon_path = os.path.join(os.path.dirname(__file__), "logo.ico")
 root.iconbitmap(icon_path)
 
@@ -60,6 +60,14 @@ pSetNameListbox.grid(column=1, row=6, columnspan=2, sticky="w", padx=(0, 8))
 pSetName = Entry(tab1, width=30, state=DISABLED)
 pSetName.grid(column=3, row=6, columnspan=2, sticky="nw")
 
+# Checkbox for "Delete PSets"
+delete_psets_var = BooleanVar()
+checkbox_delete_psets = Checkbutton(
+    tab1,
+    text="Delete converted Psets",
+    variable=delete_psets_var
+)
+checkbox_delete_psets.grid(column=1, row=7, columnspan=2, sticky="w", padx=(0, 8))
 
 # Update state of widgets
 def update_input_method_tab1():
@@ -88,6 +96,9 @@ rb_entry = Radiobutton(
     command=update_input_method_tab1,
 )
 rb_entry.grid(column=3, row=5, columnspan=2, sticky="w")
+
+
+
 
 # Tab IfcClassification to IfcPropertySet
 pSetName2 = Entry(tab2, width=30, state=DISABLED)
@@ -154,7 +165,8 @@ def clicked():
     selected_tab = notebook.index(notebook.select())
     pset_names = get_selected_pset_names()
     if selected_tab == 0:
-        returnMessage = convert_to_classification(filename, model, pset_names)
+        delete_psets = delete_psets_var.get()
+        returnMessage = convert_to_classification(filename, model, pset_names, delete_psets)
     else:
         returnMessage = convert_to_property_set(filename, model, pset_names)
     message.configure(text=returnMessage)

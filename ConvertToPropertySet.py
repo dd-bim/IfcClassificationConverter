@@ -28,7 +28,7 @@ def convert_to_property_set(file, model, pSetNameType):
                 elif key == 'ReferencedSource':
                     classification = attr.get(key)
                     if classification is not None and classification.is_a("IfcClassification"):
-                        properties['Class'+key] = classification.Name
+                        properties['ClassificationReference'+key] = classification.Name
                         catalogAttr = classification.__dict__
                         
                         # get all attributes of the IfcClassification
@@ -38,12 +38,12 @@ def convert_to_property_set(file, model, pSetNameType):
                             elif k == 'EditionDate' and version == "IFC2X3":
                                 date = ifcopenshell.util.date.ifc2datetime(catalogAttr.get(k))
                                 if date is not None:
-                                    properties['Catalog'+k] = date.strftime("%Y-%m-%d")
+                                    properties['Classification'+k] = date.strftime("%Y-%m-%d")
                                 removable.add(catalogAttr.get(k))
                             else:
                                 val = catalogAttr.get(k)
                                 if val is not None:
-                                    properties['Catalog'+k] = val
+                                    properties['Classification'+k] = val
                         removable.add(classification)
                         if version != "IFC2X3":
                             removable.add(classification.ClassificationForObjects[0])
@@ -59,7 +59,7 @@ def convert_to_property_set(file, model, pSetNameType):
                     elif key == 'Location' and pSetName == 'GenerateNames' and value is None:
                         pSetName = 'bSD_' + attr.get("Name")
                     if value is not None:
-                        properties['Class'+key] = value
+                        properties['ClassificationReference'+key] = value
             removable.add(reference)
             
             # find all related entities for IfcClassificationReference
@@ -117,8 +117,8 @@ def convert_to_property_set(file, model, pSetNameType):
             changedEntities.extend(entities)
 
         # remove all IfcClassificationReferences
-        for obj in removable:
-            model.remove(obj)
+        # for obj in removable:
+        #     model.remove(obj)
         
         model.write(file.replace('.ifc','') + "_with_propertyset.ifc")
         return "Conversion successful!"
