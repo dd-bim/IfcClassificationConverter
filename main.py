@@ -78,7 +78,7 @@ def update_input_method_tab1():
         pSetNameListbox.config(state=DISABLED)
         pSetName.config(state=NORMAL)
 
-
+ 
 input_method_tab1 = StringVar(tab1, "listbox")
 rb_listbox = Radiobutton(
     tab1,
